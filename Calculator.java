@@ -10,8 +10,9 @@ public class Calculator {
 	 **************************/
 	public static Integer calculate(String expression) {
 
-		// Check if the expression has the correct brackets if not it will print an
-		// error and terminate the application
+		// Check if the expression has the correct brackets, if it has bracket and if
+		// the operations
+		// are valid, if not it will print an error and lunch the calculator again
 		if (!checkExpression(expression)) {
 			calculatorApp();
 		}
@@ -38,16 +39,10 @@ public class Calculator {
 				// encounter an opening bracket.
 				// It will use the first two elements of the value stack as expressions and the
 				// first element of the operation stack as a function
-			} else if (input[i].contains(")")) {
+			} else {
 
-				while (values.size() > 1) {
-
-					values.push(resolve(operations.peek(), values.pop(), values.pop()));
-
-				}
+				values.push(resolve(operations.pop(), values.pop(), values.pop()));
 				operations.pop();
-				operations.pop();
-
 			}
 
 		}
@@ -185,23 +180,14 @@ public class Calculator {
 	 ***************************************************************/
 	public static void main(String[] args) {
 
-		System.out.println("(add 1 (add (add 2 2) 8 4)) = " + calculate("(add 1 (add (add 2 2) 8 4))"));
+		System.out.println("(add 1 (add (add 2 2) 4)) = " + calculate("(add 1 (add (add 2 2) 4))"));
 		System.out.println("(add 123 456) = " + calculate("(add 123 456)"));
 		System.out.println("(multiply (add 1 2) 3) = " + calculate("(multiply (add 1 2) 3)"));
-		System.out.println("(add 1 1 1) = " + calculate("(add 1 1 1)"));
-		System.out.println("(add 0 (add 3 4)) = " + calculate("(add 0 (add 3 4))"));
-		System.out.println("(add 3 (add (add 3 9 3) 3)) = " + calculate("(add 3 (add (add 3 9 3) 3))"));
-		System.out.println("(multiply 1 1) = " + calculate("(multiply 1 1)"));
-		System.out.println("(multiply 0 (multiply 3 4)) = " + calculate("(multiply 0 (multiply 3 4))"));
-		System.out.println("(multiply 2 (multiply 3 4)) = " + calculate("(multiply 2 (multiply 3 4))"));
-		System.out.println(
-				"(multiply 3 (multiply (multiply 3 3) 3)) = " + calculate("(multiply 3 (multiply (multiply 3 3) 3))"));
 		System.out.println("(add 1 (multiply 2 3)) = " + calculate("(add 1 (multiply 2 3))"));
 		System.out.println("(multiply 2 (add (multiply 2 3) 8)) = " + calculate("(multiply 2 (add (multiply 2 3) 8))"));
-		System.out.println("(multiply 10 -4 -2) = " + calculate("(multiply 10 -4 -2)"));
+		System.out.println("(multiply 10 -4) = " + calculate("(multiply 10 -4)"));
+		System.out.println("(exponent 2 5) = " + calculate("(exponent 2 5)"));;
 
 		calculatorApp();
 
 	}
-
-}
