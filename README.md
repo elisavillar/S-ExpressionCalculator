@@ -2,7 +2,7 @@
 
 Calculate expressions with the form:
 
-(FUNCTION EXP EXP ... EXP)
+(FUNCTION EXP EXP)
 
 A function call is always delimited by parenthesis ( and ).
 
@@ -14,4 +14,4 @@ For example:
 
 (add 1 2)
 
-(add 1 2 3 4 (multiply 2 3 5))
+(add 1 (multiply 2 3))
